@@ -5,7 +5,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NVIM_DIR="$HOME/.config/nvim"
 BACKUP_DIR="$HOME/.config/nvim.backup.$(date +%Y%m%d_%H%M%S)"
 PLUGIN_DIR="$NVIM_DIR/lua/plugins"
-COLORSCHEME_FILE="$SCRIPT_DIR/lua/plugins/colorscheme.lua"
 
 echo "▶ LazyVim + Catppuccin transparent installer"
 
@@ -19,10 +18,11 @@ echo "Creating LazyVim starter..."
 git clone https://github.com/LazyVim/starter "$NVIM_DIR"
 rm -rf "$NVIM_DIR/.git"
 mkdir -p "$PLUGIN_DIR"
-echo "Copying colorscheme.lua from repository..."
-cp "$COLORSCHEME_FILE" "$PLUGIN_DIR/colorscheme.lua"
 
-# 6️⃣ Mensagem final
+echo "Copying colorscheme.lua and snacks.lua from repository..."
+cp "$SCRIPT_DIR/lua/plugins/colorscheme.lua" "$PLUGIN_DIR/colorscheme.lua"
+cp "$SCRIPT_DIR/lua/plugins/snacks.lua" "$PLUGIN_DIR/snacks.lua"
+
 echo
 echo "LazyVim has been installed with Catppuccin Mocha transparent!"
 echo "▶ Open Lazyvim and wait has install all plugins:"

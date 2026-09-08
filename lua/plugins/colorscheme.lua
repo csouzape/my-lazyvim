@@ -1,34 +1,29 @@
+local catppuccin_opts = {
+  flavour = "mocha",
+  transparent_background = true,
+  show_end_of_buffer = false,
+  integrations = {
+    cmp = true,
+    telescope = { enabled = true },
+    which_key = true,
+    native_lsp = { enabled = true },
+    snacks = false,
+  },
+}
+
 return {
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = function()
+        require("catppuccin").setup(catppuccin_opts)
+        vim.cmd.colorscheme("catppuccin-mocha")
+      end,
+    },
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    config = function()
-      require("catppuccin").setup({
-        flavour = "mocha",
-        transparent_background = true,
-      })
-
-      vim.cmd.colorscheme("catppuccin-mocha")
-
-      local highlights = {
-        "Normal",
-        "NormalNC",
-        "SignColumn",
-        "EndOfBuffer",
-        "MsgArea",
-        "FloatBorder",
-        "NormalFloat",
-        "StatusLine",
-        "StatusLineNC",
-        "LineNr",
-        "Folded",
-        "WinSeparator",
-      }
-
-      for _, hl in ipairs(highlights) do
-        vim.api.nvim_set_hl(0, hl, { bg = "none" })
-      end
-    end,
   },
 }
