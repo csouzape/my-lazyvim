@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NVIM_DIR="$HOME/.config/nvim"
 BACKUP_DIR="$HOME/.config/nvim.backup.$(date +%Y%m%d_%H%M%S)"
 PLUGIN_DIR="$NVIM_DIR/lua/plugins"
+COLORSCHEME_FILE="$SCRIPT_DIR/lua/plugins/colorscheme.lua"
 
-echo "▶ Lzyvim + Gruvbox Material transparent installer"
+echo "▶ LazyVim + Catppuccin transparent installer"
 
 if [ -d "$NVIM_DIR" ]; then
   echo "The directory $NVIM_DIR already exists."
@@ -17,50 +19,12 @@ echo "Creating LazyVim starter..."
 git clone https://github.com/LazyVim/starter "$NVIM_DIR"
 rm -rf "$NVIM_DIR/.git"
 mkdir -p "$PLUGIN_DIR"
-echo "Creating colorscheme.lua..."
-
-cat << 'EOF' > "$PLUGIN_DIR/colorscheme.lua"
-return {
-  {
-    "sainnhe/gruvbox-material",
-    priority = 1000, 
-    config = function()
-      -- Estilo base
-      vim.g.gruvbox_material_background = "hard" -- mais escuro
-      vim.g.gruvbox_material_foreground = "material"
-      vim.g.gruvbox_material_enable_italic = true
-      vim.g.gruvbox_material_enable_bold = true
-
-      vim.g.gruvbox_material_palette = "mix"
-
-      vim.cmd.colorscheme("gruvbox-material")
-
-      local highlights = {
-        "Normal",
-        "NormalNC",
-        "SignColumn",
-        "EndOfBuffer",
-        "MsgArea",
-        "FloatBorder",
-        "NormalFloat",
-        "StatusLine",
-        "StatusLineNC",
-        "LineNr",
-        "Folded",
-        "WinSeparator",
-      }
-
-      for _, hl in ipairs(highlights) do
-        vim.api.nvim_set_hl(0, hl, { bg = "none" })
-      end
-    end,
-  },
-}
-EOF
+echo "Copying colorscheme.lua from repository..."
+cp "$COLORSCHEME_FILE" "$PLUGIN_DIR/colorscheme.lua"
 
 # 6️⃣ Mensagem final
 echo
-echo "LazyVim Has installed with Gruvbox Material Transparent!"
+echo "LazyVim has been installed with Catppuccin Mocha transparent!"
 echo "▶ Open Lazyvim and wait has install all plugins:"
 echo "   nvim"
 echo

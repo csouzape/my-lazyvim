@@ -19,10 +19,11 @@ framework. It does exactly four things:
   time.
 - Strips the `.git` directory from the clone, because you don't want
   somebody else's commit history sitting in your own dotfiles repo.
-- Drops in a `colorscheme.lua` for Gruvbox Material (`hard` background,
-  `material` foreground, italics and bold on) with a transparent background
-  applied across the usual suspects: `Normal`, `NormalNC`, `SignColumn`,
-  `StatusLine`, `LineNr`, `WinSeparator`, and so on.
+- Copies the repository's `lua/plugins/colorscheme.lua` into the installed
+  Neovim configuration.
+- Drops in a `colorscheme.lua` for Catppuccin Mocha with a transparent
+  background applied across the usual suspects: `Normal`, `NormalNC`,
+  `SignColumn`, `StatusLine`, `LineNr`, `WinSeparator`, and so on.
 
 That's it. No plugin bloat added on top of what LazyVim starter already
 ships with.
